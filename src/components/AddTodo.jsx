@@ -1,17 +1,40 @@
-function AddTodo(){
+import { useState } from "react";
+import styles from "./AddTodo.module.css"
+function AddTodo({onNewItem}){
+
+  const [todoName, setTodoName] = useState();
+  const [dueDate, setDueDate] = useState();
+
+  const handleOnChangeName=(event)=>{
+    setTodoName(event.target.value);
+  
+}
+
+const handleOnChangeDate=(event)=>{
+  setDueDate(event.target.value);
+
+}
+
+const handleAddButtonClicked=(event)=>{
+  event.preventDefault();
+  onNewItem(todoName, dueDate);
+  setDueDate("");
+  setTodoName("");
+
+}
 
     return( <div className="container text-center">
-          <div className="row kg-row">
+          <form onSubmit={handleAddButtonClicked} className="row kg-row">
             <div className="col-6">
-              <input type="text" placeholder="Enter Todo Here" />
+              <input type="text" value={todoName} onChange={handleOnChangeName} placeholder="Enter Todo Here" />
             </div>
             <div className="col-4">
-              <input type="date" />
+              <input type="date" value={dueDate} onChange={handleOnChangeDate} />
             </div>
             <div className="col-2">
-            <button type="button" className="btn btn-success kg-button">Add</button>
+            <button type="submit" className="btn btn-success kg-button">Add</button>
             </div>
-          </div>
+          </form>
           </div>
           );
 

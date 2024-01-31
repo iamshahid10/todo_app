@@ -1,16 +1,11 @@
-.app-name{
-  font-weight: 700;
-  font-size: 45px;
-  margin: 10px;
+.todo-container{ height: 100vh; color: aliceblue; background: #0099F7;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to right, #F11712, #0099F7);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to right, #F11712, #0099F7); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+}
+
+.date{
   margin-bottom: 20px;
-}
-
-input {
-  width: 100%;
-}
-
-.items-container{
-  text-align: left;
 }
 
 .kg-row{

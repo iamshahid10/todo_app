@@ -1,24 +1,38 @@
+import { useState } from "react";
 import "./App.css"
-import TodoItem2 from './TodoItem2'
 import AddTodo from './components/AddTodo'
 import AppName from './components/AppName'
-import TodoItem1 from './components/TodoItem1'
+import TodoItems from "./components/TodoItems";
+import WelcomeMessage from "./components/WelcomeMessage";
 function App() {
   let date = new Date();
 
-  return (
-    
-      <center className="todo-container">
-          <AppName></AppName>
-          <h3>{date.toLocaleDateString()}</h3>
-          <AddTodo></AddTodo>
-          <div className="items-container">
-          <TodoItem1></TodoItem1>
-          <TodoItem2></TodoItem2>
-          </div>
+  const [todoItems, setTodoItems] = useState([])
 
+  const handleNewItem=(todoName, dueDate)=>{
+      const newTodoItems = [
+        ...todoItems,{name: todoName, dueDate: dueDate},
+      ];
+      setTodoItems(newTodoItems);
+
+  }
+
+  const handleDeleteItem = (todoItemName) =>{
+    const newTodoItems = todoItems.filter((item) => item.name !== todoItemName);
+    setTodoItems(newTodoItems);
+
+  };
+
+  return (
+  
+      <center className="todo-container">
+          <AppName appName="TODO APP" ></AppName>
+          <h3 className="date">{date.toLocaleDateString()}</h3>
+          <AddTodo onNewItem={handleNewItem} ></AddTodo>
+          {todoItems.length === 0 && <WelcomeMessage></WelcomeMessage>}
+          <TodoItems todoItems={todoItems} handleDeleteItem={handleDeleteItem} ></TodoItems>
       </center>
-      
+    
 
   )
 }

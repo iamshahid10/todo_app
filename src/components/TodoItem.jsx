@@ -1,6 +1,4 @@
-function TodoItem1(){
-    let todoname = "Buy Milk";
-    let tododate = "4/10/2023";
+function TodoItem({todoname, tododate, handleDeleteItem}){
 
     return(
         <div className="container">
@@ -8,10 +6,10 @@ function TodoItem1(){
             <div className="col-6">{todoname}</div>
             <div className="col-4">{tododate}</div>
             <div className="col-2">
-            <button type="button" className="btn btn-danger kg-button">Delete</button>
+            <button type="button" onClick={() => handleDeleteItem(todoname)} className="btn btn-danger kg-button">Delete</button>
             </div>
           </div>
           </div>
     );
 }
-export default TodoItem1;
+export default TodoItem;
